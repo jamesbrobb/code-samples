@@ -1,0 +1,35 @@
+
+:host {
+    --image-blur-strength: var(--ef-class-image-blur-strength, 2rem);
+
+    width: 100%;
+    height: 100%;
+
+    .ef-class-image {
+        position: relative;
+        width: inherit;
+        height: inherit;
+
+        .fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        img {
+            position: relative;
+            display: block;
+            width: inherit;
+            height: inherit;
+            object-fit: cover;
+        }
+
+        &.blur {
+            filter: blur(var(--image-blur-strength));
+            top: calc(var(--image-blur-strength) * -1);
+            left: calc(var(--image-blur-strength) * -1);;
+            width: calc(100% + calc(var(--image-blur-strength) * 2));
+            height: calc(100% + calc(var(--image-blur-strength) * 2));
+        }
+    }
+}

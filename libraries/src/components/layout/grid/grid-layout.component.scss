@@ -1,0 +1,39 @@
+@import 'ef-class-resources';
+
+
+
+:host {
+    --grid-vertical-gap: var(--ef-class-grid-vertical-gap, 1rem);
+    --grid-horizontal-gap: var(--ef-class-grid-horizontal-gap, 1rem);
+    --grid-min-column-width: var(--ef-class-grid-min-column-width, 0);
+
+    --grid-flex-columns: var(--ef-class-grid-flex-columns, 4);
+    --grid-flex-row-height: var(--ef-class-grid-row-height, fit-content);
+
+    @supports not (display: grid) {
+
+        .grid-layout {
+            display: flex;
+            flex-flow: row wrap;
+            align-items: flex-start;
+            margin: calc((var(--grid-vertical-gap) * -1)/2) calc((var(--grid-horizontal-gap) * -1)/2);
+
+            ::ng-deep > * {
+                flex: 0 0 calc((100%/var(--grid-flex-columns)) - var(--grid-horizontal-gap));
+                margin: calc(var(--grid-vertical-gap) / 2) calc(var(--grid-horizontal-gap) / 2);
+                height: var(--grid-flex-row-height);
+                min-width: var(--grid-min-column-width);
+            }
+        }
+    }
+
+    @supports (display: grid) {
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-column-width), 1fr));
+            grid-gap: var(--grid-vertical-gap) var(--grid-horizontal-gap);
+            align-items: start;
+        }
+    }
+}

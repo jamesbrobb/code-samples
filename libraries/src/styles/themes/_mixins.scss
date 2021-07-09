@@ -1,0 +1,76 @@
+
+@mixin create_primary_style($type, $color, $background-color, $focus-color) {
+
+    --ef-class-color: #{$color};
+    --ef-class-background-color: #{$background-color};
+
+    @if $type == light {
+
+        $light-color: #{mix(black, $background-color, 5%)};
+
+        --ef-class-background-color-hover: #{$light-color};
+        --ef-class-background-color-focus: #{$light-color};
+        --ef-class-border-color-hover: #{$light-color};
+
+    } @else {
+
+        $dark-color: #{mix(white, $background-color, 10%)};
+
+        --ef-class-background-color-hover: #{$dark-color};
+        --ef-class-background-color-focus: #{$dark-color};
+        --ef-class-border-color-hover: #{$dark-color};
+    }
+
+    --ef-class-border-color: #{$background-color};
+    --ef-class-border-color-focus: #{$focus-color};
+    --ef-class-shadow-color-focus: #{rgba($focus-color, 0.6)};
+    --ef-class-background-color-active: #{mix(black, $background-color, 10%)};
+}
+
+
+@mixin create_secondary_style($color) {
+
+    --ef-class-color: #{$color};
+    --ef-class-background-color: none;
+    --ef-class-background-color-hover: #{rgba($color, 0.1)};
+    --ef-class-background-color-focus: #{rgba($color, 0.1)};
+    --ef-class-color-hover: #{rgba($color, 0.9)};
+    --ef-class-border-color: #{$color};
+    --ef-class-border-color-hover: #{$color};
+    --ef-class-border-color-focus: #{$color};
+    --ef-class-shadow-color-focus: #{rgba($color, 0.6)};
+    --ef-class-background-color-active: #{rgba($color, 0.3)};
+}
+
+
+@mixin create_styles($styles) {
+
+    @each $style-name, $style in $styles {
+
+        @each $type-name, $values in $style {
+
+            .ef-class-#{$type-name}.#{$style-name} {
+
+                @if $style-name == primary {
+
+                    @include create_primary_style($type-name, nth($values, 1), nth($values, 2), nth($values, 3));
+
+                } @else if $style-name == secondary {
+
+                    @include create_secondary_style(nth($values, 1));
+                }
+            }
+        }
+    }
+}
+
+
+@mixin create_themes {
+
+    @each $name, $value in $ef-class-themes {
+
+        .ef-class-#{$name} {
+            @include create_styles($value);
+        }
+    }
+}

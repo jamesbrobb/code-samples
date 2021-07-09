@@ -1,0 +1,22 @@
+
+@mixin flex-grid($min-column-width:0, $vertical-gap:1rem, $horizontal-gap:1rem, $row-height:fit-content, $column-count:4) {
+
+    .grid {
+        --flex-grid-vertical-gap: var(--grid-vertical-gap, #{$vertical-gap});
+        --flex-grid-horizontal-gap: var(--grid-horizontal-gap, #{$horizontal-gap});
+        --flex-grid-columns: var(--grid-columns, #{$column-count});
+        --flex-grid-row-height: var(--grid-row-height, #{$row-height});
+
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+        margin: calc((var(--flex-grid-vertical-gap) * -1)/2) calc((var(--flex-grid-horizontal-gap) * -1)/2);
+
+        > .grid-item {
+            flex: 0 0 calc((100%/var(--flex-grid-columns)) - var(--flex-grid-horizontal-gap));
+            margin: calc(var(--flex-grid-vertical-gap) / 2) calc(var(--flex-grid-horizontal-gap) / 2);
+            height: var(--flex-grid-row-height);
+            min-width: $min-column-width;
+        }
+    }
+}

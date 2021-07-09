@@ -1,0 +1,103 @@
+@import 'ef-class-resources';
+
+:host {
+    display: block;
+    width: 100%;
+
+    --LG: 710;
+
+    .page-header {
+
+        --page-header-bottom-padding: var(--ef-class-page-header-bottom-padding, #{$gap-xxl});
+        --page-header-top-slot-display: var(--ef-class-page-header-top-slot-display, none);
+        --page-header-top-slot-margin-bottom: var(--ef-class-page-header-top-slot-margin-bottom, #{$gap-m});
+
+        --page-header-horizontal-padding: 2.2rem;
+        --page-header-title-font-size: 2.8rem;
+        --page-header-content-slot-flex-direction: column;
+        --page-header-content-slot-display: flex;
+        --page-header-content-slot-empty-display: none;
+        --page-header-content-slot-min-height: 0;
+
+        position: relative;
+        width: inherit;
+
+        &.LG {
+            --page-header-top-slot-display: var(--ef-class-page-header-top-slot-display, flex);
+            --page-header-horizontal-padding: #{$gap-xxl};
+            --page-header-title-font-size: 4.4rem;
+            --page-header-content-slot-flex-direction: row;
+            --page-header-content-slot-empty-display: var(--page-header-content-slot-display);
+            --page-header-content-slot-min-height: #{$gap-xl};
+        }
+
+        > .image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+
+            padding: $gap-xxl var(--page-header-horizontal-padding) var(--page-header-bottom-padding);
+
+            color: $ef-class-palette-white;
+
+            .top-slot {
+                display: var(--page-header-top-slot-display);
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+                width: 100%;
+                min-height: 3rem;
+                margin-bottom: var(--page-header-top-slot-margin-bottom);
+            }
+
+            .title-container {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .title {
+                    max-width: 90rem;
+                    font-size: var(--page-header-title-font-size);
+                    line-height: 1.5;
+                    text-align: center;
+                    color: $ef-class-palette-white;
+
+                    @include prevent-text-break-out;
+                }
+            }
+
+            .content-slot {
+                display: var(--page-header-content-slot-display);
+                flex-direction: var(--page-header-content-slot-flex-direction);
+                align-items: flex-start;
+                justify-content: space-between;
+                width: 100%;
+                max-width: 90rem;
+                min-height: var(--page-header-content-slot-min-height);
+                margin: 0 auto;
+                margin-top: $gap-m;
+
+                &:empty {
+                    display: var(--page-header-content-slot-empty-display);
+                }
+            }
+        }
+    }
+}

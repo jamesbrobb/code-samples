@@ -1,0 +1,22 @@
+@import '../flex/flex-grid';
+
+@mixin auto-fill-grid($min-column-width, $vertical-gap, $horizontal-gap) {
+
+	@supports not (display: grid) {
+
+		@include flex-grid($min-column-width, $vertical-gap, $horizontal-gap);
+	}
+
+	@supports (display: grid) {
+
+		.grid {
+			--css-grid-vertical-gap: var(--grid-vertical-gap, #{$vertical-gap});
+			--css-grid-horizontal-gap: var(--grid-horizontal-gap, #{$horizontal-gap});
+
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax($min-column-width, 1fr));
+			grid-gap: var(--css-grid-vertical-gap) var(--css-grid-horizontal-gap);
+			align-items: start;
+		}
+	}
+}

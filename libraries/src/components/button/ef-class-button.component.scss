@@ -1,0 +1,137 @@
+@import 'ef-class-resources';
+
+
+:host {
+    --btn-cursor: var(--ef-class-btn-cursor, pointer);
+    --btn-color: var(--ef-class-color, #{$ef-class-palette-black});
+    --btn-background-color: var(--ef-class-background-color, none);
+    --btn-color-hover: var(--ef-class-color-hover, #{rgba($ef-class-palette-black, 0.9)});
+    --btn-background-color-hover: var(--ef-class-background-color-hover, #{rgba($ef-class-palette-black, 0.1)});
+    --btn-background-color-focus: var(--ef-class-background-color-focus, #{rgba($ef-class-palette-black, 0.1)});
+    --btn-border-color: var(--ef-class-border-color, #{$ef-class-palette-black});
+    --btn-border-color-hover: var(--ef-class-border-color-hover, #{$ef-class-palette-black});
+    --btn-border-color-focus: var(--ef-class-border-color-focus, #{$ef-class-palette-black});
+    --btn-shadow-color-focus: var(--ef-class-shadow-color-focus, #{rgba($ef-class-palette-black, 0.6)});
+    --btn-background-color-active: var(--ef-class-background-color-active, #{rgba($ef-class-palette-black, 0.3)});
+    --btn-opacity: var(--ef-class-btn-opacity, 0.4);
+
+    --btn-padding: 1.6rem;
+    --btn-min-width: 10rem;
+    --btn-height: 4rem;
+    --btn-border-radius: 0.2rem;
+    --btn-border-width: 1px;
+    --btn-border-style: solid;
+    --btn-font-size: 1.6rem;
+
+    display: block;
+
+    &.fixed-width {
+        --btn-padding: 0;
+    }
+
+    &.icon-only {
+        --btn-min-width: 4rem;
+        --btn-padding: 1rem;
+        --btn-background-color: none;
+        --btn-background-color-hover: none;
+        --btn-background-color-focus: none;
+        --btn-background-color-active: none;
+        --btn-border-color-hover: none;
+        --btn-border-color-focus: none;
+        --btn-border-style: none;
+        --btn-shadow-color-focus: none;
+    }
+
+    &.text-only {
+        --btn-padding: 0rem;
+        --btn-background-color: none;
+        --btn-background-color-hover: none;
+        --btn-background-color-focus: none;
+        --btn-background-color-active: none;
+        --btn-border-color-hover: none;
+        --btn-border-color-focus: none;
+        --btn-border-style: none;
+        --btn-shadow-color-focus: none;
+
+        :hover:enabled {
+            color: var(--btn-color-hover);
+        }
+    }
+
+    button {
+
+        @include button_reset;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        width: inherit;
+        min-width: var(--btn-min-width);
+        height: var(--btn-height);
+        padding: 0 var(--btn-padding);
+
+        border-width: var(--btn-border-width);
+        border-style: var(--btn-border-style);
+        border-color: var(--btn-border-color);
+        border-radius: var(--btn-border-radius);
+
+        background: transparent;
+        background-color: var(--btn-background-color);
+
+        font-size: var(--btn-font-size);
+        font-weight: 600;
+        line-height: 1;
+        color: var(--btn-color);
+        fill: var(--btn-color);
+
+        transition: background-color 0.2s ease-in, color 0.2s ease-in, border-color 0.2s ease-in, color 0.2s ease-in;
+        cursor: var(--btn-cursor);
+
+        ::ng-deep *:not(:first-child) {
+            margin-left: 1.6rem;
+        }
+
+        &:hover:enabled {
+            border-color: var(--btn-border-color-hover);
+            background-color: var(--btn-background-color-hover);
+        }
+
+        &:active:enabled,
+        &:active:enabled:focus {
+            background-color: var(--btn-background-color-active);
+        }
+
+        &:focus:enabled {
+            padding: 0 calc(var(--btn-padding) - 1px);
+            border-width: calc(var(--btn-border-width) + 1px);
+            border-color: var(--btn-border-color-focus);
+            background-color: var(--btn-background-color-focus);
+            box-shadow: 0 0 5px 0 var(--btn-shadow-color-focus);
+        }
+
+        &.large {
+            --btn-height: 5rem;
+        }
+
+        &.medium {
+            --btn-height: 3rem;
+            --btn-font-size: 1.4rem;
+        }
+
+        &.small {
+            --btn-height: 2.7rem;
+            --btn-font-size: 1.273rem;
+        }
+
+        &[disabled] {
+            cursor: not-allowed;
+            opacity: var(--btn-opacity);
+
+            ::ng-deep * {
+                pointer-events: none;
+            }
+        }
+    }
+}

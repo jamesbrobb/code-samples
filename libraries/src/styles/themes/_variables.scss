@@ -1,0 +1,21 @@
+
+$ef-class-themes: (
+    theme-1: (
+        primary: (
+            light: ($ef-class-palette-blue-500, $ef-class-palette-white, $ef-class-palette-blue-400),
+            medium: ($ef-class-palette-white, $ef-class-palette-blue-500, $ef-class-palette-blue-900),
+            dark: ($ef-class-palette-white, $ef-class-palette-dark-blue-500, $ef-class-palette-dark-blue-500),
+            positive: ($ef-class-palette-white, $ef-class-palette-green-800, $ef-class-palette-green-900),
+            warning: ($ef-class-palette-dark-blue-500, $ef-class-palette-yellow-500, $ef-class-palette-yellow-800),
+            negative: ($ef-class-palette-white, $ef-class-palette-red-600, $ef-class-palette-red-900)
+        ),
+        secondary: (
+            light: ($ef-class-palette-white),
+            medium: ($ef-class-palette-blue-500),
+            dark: ($ef-class-palette-dark-blue-500),
+            positive: ($ef-class-palette-green-800),
+            warning: ($ef-class-palette-yellow-500),
+            negative: ($ef-class-palette-red-600)
+        )
+    )
+);

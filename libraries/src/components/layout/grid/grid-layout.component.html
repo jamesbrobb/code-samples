@@ -1,0 +1,9 @@
+
+<div class="grid-layout">
+
+    <ng-template *ngFor="let item of dataProvider; trackBy: trackById"
+        [ngTemplateOutletContext]="{item: item}"
+        [ngTemplateOutlet]="itemTemplate">
+    </ng-template>
+
+</div>

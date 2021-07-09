@@ -1,0 +1,10 @@
+<div class="ef-class-image" [ngClass]="{blur: blur}">
+
+    <ef-class-fallback-image class="fallback"
+        [seed]="fallbackSeed"
+        [color]="fallbackColor">
+    </ef-class-fallback-image>
+
+    <img *ngIf="url" [src]="url">
+
+</div>
